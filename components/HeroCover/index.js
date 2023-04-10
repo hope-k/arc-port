@@ -38,13 +38,13 @@ const HeroCover = () => {
   const staggerTextVariant = {
     hidden: {
       opacity: 0,
-      y: 35,
+      y: 25,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: .80,
+        duration: .35,
         staggerChildren: .15,
         ease: 'easeInOut'
       },
@@ -114,7 +114,7 @@ const HeroCover = () => {
           }}
           transition={{
             opacity: {
-              duration: 1,
+              duration: .5,
               ease: 'easeInOut',
             },
             backgroundSize: {
