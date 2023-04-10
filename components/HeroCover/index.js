@@ -139,12 +139,12 @@ const HeroCover = () => {
           variants={staggerTextVariant}
           className='absolute left-5 top-3 md:-top-3 md:left-16  text-white  z-10 mix-blend-exclusion font-sans'
         >
-          <motion.span variants={staggerTextVariant} className=' absolute md:inset-x-5 -inset-[6.8px] -top-[57px] md:-top-12 whitespace-nowrap font-semibold mon-font'>
+          <motion.span  variants={staggerTextVariant} className=' absolute md:inset-x-5 -inset-[6.8px] -top-[57px] md:-top-12 whitespace-nowrap font-semibold mon-font'>
             Frank Lloyd Wright
             <motion.div className='h-2  bg-[#aa5c3bee]' transition={{ duration: 4, ease: 'easeOut', }} whileInView={{ width: ['0rem', '2.75rem'] }}>
             </motion.div>
           </motion.span>
-          <motion.span style={{ y }} variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
+          <motion.span  variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
             portfolio.
           </motion.span>
         </motion.h1>
@@ -162,10 +162,10 @@ const HeroCover = () => {
       <div  className='absolute bottom-5 w-full overflow-hidden'>
         <motion.div whileInView={{ borderBottomWidth: ['0rem', '4rem'] }} transition={{ duration: 1.8, ease: 'circOut', staggerChildren: .33 }} className='flex justify-between md:mx-16 mx-2  text-[#aa5c3bee] font-extralight text-xl border-b-[4rem] border-[#aa5c3bc8] pb-2  mon-font italic relative '>
           <div className='w-full h-2 bg-[#ccc] absolute -bottom-12 z-50'></div>
-          <motion.h1 transition={{ duration: 1.2, ease: 'circOut', }} whileInView={{ x: [-30, 0], }} className=''>
+          <motion.h1 style={{ y }} transition={{ duration: 1.2, ease: 'circOut', }} whileInView={{ x: [-30, 0], }} className=''>
             <span>001</span>
           </motion.h1>
-          <motion.h1 transition={{ duration: 1.2, ease: 'circOut', }} whileInView={{ x: [30, 0] }} className=''>
+          <motion.h1 style={{ y }} transition={{ duration: 1.2, ease: 'circOut', }} whileInView={{ x: [30, 0] }} className=''>
             <span>2023</span>
           </motion.h1>
 
