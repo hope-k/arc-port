@@ -1,12 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
-import { motion } from 'framer-motion'
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  MotionValue
+} from "framer-motion";
+
+function useParallax(value, distance) {
+  //? replaced -distance  with 0 to make the image move in the opposite direction and not shift the text
+  const currentValue = useTransform(value, [0, 1], [0, distance])
+  const springConfig = { damping: 65, stiffness: 370 };
+  return useSpring(currentValue, springConfig);
+}
 
 
 const HeroCover = () => {
   const images = ['/heroImages/one.jpg', '/heroImages/two.jpg', '/heroImages/three.jpg', '/heroImages/four.jpg'];
-
-
   const words = [
     `The Art of Architecture: A Showcase of Creativity and Style`,
     'Architecture is not about space but about time.',
@@ -26,16 +37,16 @@ const HeroCover = () => {
 
   const staggerTextVariant = {
     hidden: {
-      opacity: 0.13,
+      opacity: 0,
       y: 35,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: .85,
-        staggerChildren: .33,
-        ease: 'easeOut'
+        duration: .80,
+        staggerChildren: .15,
+        ease: 'easeInOut'
       },
     },
   }
@@ -59,6 +70,11 @@ const HeroCover = () => {
     };
   }, [imageIndex]);
 
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+  const y = useParallax(scrollYProgress, -40);
+  const x = useParallax(scrollYProgress, 20);
+
   return (
 
 
@@ -77,6 +93,7 @@ const HeroCover = () => {
 
         {/* Gradient */}
         <motion.div
+         
           className='md:bg-center'
           style={{
             backgroundImage: `url(${nextImage || images[imageIndex]})`,
@@ -114,7 +131,7 @@ const HeroCover = () => {
         <div className='absolute inset-0 bg-gradient-to-l from-transparent to-blue-400 brightness-[.2]'></div>
       </div>
 
-      <div className=' h-[30vh] w-full bg-[#cccccc32] sm:bg-[#ccc] mix-blend-exclusion relative'>
+      <div  className=' h-[30vh] w-full bg-[#cccccc32] sm:bg-[#ccc] mix-blend-exclusion relative'>
         {/*  left side h1 */}
         <motion.h1
           initial='hidden'
@@ -127,20 +144,22 @@ const HeroCover = () => {
             <motion.div className='h-2  bg-[#aa5c3bee]' transition={{ duration: 4, ease: 'easeOut', }} whileInView={{ width: ['0rem', '2.75rem'] }}>
             </motion.div>
           </motion.span>
-          <motion.span variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
+          <motion.span style={{ y }} variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
             portfolio.
           </motion.span>
         </motion.h1>
 
         {/* right side h1*/}
-        <h1 className='absolute gar-font italic leading-3 md:leading-[1]  right-4 md:right-16  md:top-14 top-10 md:text-lg text-[18px]  font- text-white  z-10 mix-blend-exclusion font-sans'>
+        <motion.h1
+          style={{ x }}
+          className='absolute gar-font italic leading-3 md:leading-[1]  right-4 md:right-16  md:top-14 top-10 md:text-lg text-[18px]  font- text-white  z-10 mix-blend-exclusion font-sans'>
           ~ selected<br />works ~
-        </h1>
+        </motion.h1>
 
 
       </div>
 
-      <div className='absolute bottom-5 w-full overflow-hidden'>
+      <div  className='absolute bottom-5 w-full overflow-hidden'>
         <motion.div whileInView={{ borderBottomWidth: ['0rem', '4rem'] }} transition={{ duration: 1.8, ease: 'circOut', staggerChildren: .33 }} className='flex justify-between md:mx-16 mx-2  text-[#aa5c3bee] font-extralight text-xl border-b-[4rem] border-[#aa5c3bc8] pb-2  mon-font italic relative '>
           <div className='w-full h-2 bg-[#ccc] absolute -bottom-12 z-50'></div>
           <motion.h1 transition={{ duration: 1.2, ease: 'circOut', }} whileInView={{ x: [-30, 0], }} className=''>
