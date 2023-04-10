@@ -73,7 +73,8 @@ const HeroCover = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress, -40);
-  const x = useParallax(scrollYProgress, 20);
+  const x = useParallax(scrollYProgress, 25);
+  const nameX = useParallax(scrollYProgress, -20);
 
   return (
 
@@ -93,7 +94,6 @@ const HeroCover = () => {
 
         {/* Gradient */}
         <motion.div
-         
           className='md:bg-center'
           style={{
             backgroundImage: `url(${nextImage || images[imageIndex]})`,
@@ -139,12 +139,12 @@ const HeroCover = () => {
           variants={staggerTextVariant}
           className='absolute left-5 top-3 md:-top-3 md:left-16  text-white  z-10 mix-blend-exclusion font-sans'
         >
-          <motion.span  variants={staggerTextVariant} className=' absolute md:inset-x-5 -inset-[6.8px] -top-[57px] md:-top-12 whitespace-nowrap font-semibold mon-font'>
+          <motion.span style={{ x: nameX }}  variants={staggerTextVariant} className=' absolute md:inset-x-5 -inset-[6.8px] -top-[57px] md:-top-12 whitespace-nowrap font-semibold mon-font'>
             Frank Lloyd Wright
             <motion.div className='h-2  bg-[#aa5c3bee]' transition={{ duration: 4, ease: 'easeOut', }} whileInView={{ width: ['0rem', '2.75rem'] }}>
             </motion.div>
           </motion.span>
-          <motion.span  variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
+          <motion.span style={{ x }}   variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
             portfolio.
           </motion.span>
         </motion.h1>
