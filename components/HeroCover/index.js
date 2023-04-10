@@ -22,7 +22,7 @@ const HeroCover = () => {
     `The Art of Architecture: A Showcase of Creativity and Style`,
     'Architecture is not about space but about time.',
     'Great buildings that move the spirit have always been rare.',
-    'A building is not just a place to be but a way to be.'
+    'A building is not just a place to be but a way to be..'
   ]
 
   const [text] = useTypewriter({
@@ -75,14 +75,15 @@ const HeroCover = () => {
   const y = useParallax(scrollYProgress, -40);
   const x = useParallax(scrollYProgress, 25);
   const nameX = useParallax(scrollYProgress, -20);
+  const quoteY = useParallax(scrollYProgress, -200);
 
   return (
 
 
     <div className='relative w-full mx-auto'>
       <div className='relative h-[70vh] w-full '>
-        <div className='text-[#ccc] flex items-center relative z-40 h-full md:mx-16 mx-2'>
-          <motion.h1 layout='position' className='gar-font md:text-6xl max-w-[32ch] text-4xl italic  font-bold '>
+        <div  className='text-[#ccc] flex items-center relative z-40 h-full md:mx-16 mx-2'>
+          <motion.h1 transition={{ease:'circOut', duration: .5}} layout='preserve-aspect' style={{ y: quoteY }} className='gar-font md:text-6xl max-w-[32ch] text-4xl italic  font-bold '>
             &#8220;
             {text}
             <Cursor
@@ -131,7 +132,7 @@ const HeroCover = () => {
         <div className='absolute inset-0 bg-gradient-to-l from-transparent to-blue-400 brightness-[.2]'></div>
       </div>
 
-      <div  className=' h-[30vh] w-full bg-[#cccccc32] sm:bg-[#ccc] mix-blend-exclusion relative'>
+      <div className=' h-[30vh] w-full bg-[#cccccc32] sm:bg-[#ccc] mix-blend-exclusion relative'>
         {/*  left side h1 */}
         <motion.h1
           initial='hidden'
@@ -139,12 +140,12 @@ const HeroCover = () => {
           variants={staggerTextVariant}
           className='absolute left-5 top-3 md:-top-3 md:left-16  text-white  z-10 mix-blend-exclusion font-sans'
         >
-          <motion.span style={{ x: nameX }}  variants={staggerTextVariant} className=' absolute md:inset-x-5 -inset-[6.8px] -top-[57px] md:-top-12 whitespace-nowrap font-semibold mon-font'>
+          <motion.span style={{ x: nameX }} variants={staggerTextVariant} className=' absolute md:inset-x-5 -inset-[6.8px] -top-[57px] md:-top-12 whitespace-nowrap font-semibold mon-font'>
             Frank Lloyd Wright
             <motion.div className='h-2  bg-[#aa5c3bee]' transition={{ duration: 4, ease: 'easeOut', }} whileInView={{ width: ['0rem', '2.75rem'] }}>
             </motion.div>
           </motion.span>
-          <motion.span style={{ x }}   variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
+          <motion.span style={{ x }} variants={staggerTextVariant} className='absolute -top-12 text-6xl md:text-8xl font-light '>
             portfolio.
           </motion.span>
         </motion.h1>
@@ -159,7 +160,7 @@ const HeroCover = () => {
 
       </div>
 
-      <div  className='absolute bottom-5 w-full overflow-hidden'>
+      <div className='absolute bottom-5 w-full overflow-hidden'>
         <motion.div whileInView={{ borderBottomWidth: ['0rem', '4rem'] }} transition={{ duration: 1.8, ease: 'circOut', staggerChildren: .33 }} className='flex justify-between md:mx-16 mx-2  text-[#aa5c3bee] font-extralight text-xl border-b-[4rem] border-[#aa5c3bc8] pb-2  mon-font italic relative '>
           <div className='w-full h-2 bg-[#ccc] absolute -bottom-12 z-50'></div>
           <motion.h1 style={{ y }} transition={{ duration: 1.2, ease: 'circOut', }} whileInView={{ x: [-30, 0], }} className=''>
